@@ -1,7 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FileText, AlertTriangle, Zap, Database, Clock, Cpu, TrendingUp, Shield } from 'lucide-react'
+import { FileText, AlertTriangle, Zap, Database, Clock, Cpu, TrendingUp, Shield, CheckCircle2, BadgeCheck, ArrowRight } from 'lucide-react'
+import CountUp from 'react-countup'
 
 const DataCalculation: React.FC = () => {
   const [ref, inView] = useInView({ 
@@ -74,6 +75,23 @@ const DataCalculation: React.FC = () => {
       subtitle: "До 1000+ точек",
       description: "Решение задач любой сложности от локальных до федеральных маршрутов",
       color: "from-orange-500 to-red-600"
+    }
+  ]
+
+  const algoMetrics = [
+    {
+      label: 'время решения',
+      value: 5,
+      prefix: '<',
+      suffix: 'мин',
+      color: 'text-green-600'
+    },
+    {
+      label: 'точек',
+      value: 1000,
+      prefix: '',
+      suffix: '+',
+      color: 'text-green-600'
     }
   ]
 
@@ -218,14 +236,18 @@ const DataCalculation: React.FC = () => {
                   Решение задач реального времени для больших объемов.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">&lt;5мин</div>
-                    <div className="text-sm text-green-600">время решения</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">1000+</div>
-                    <div className="text-sm text-green-600">точек</div>
-                  </div>
+                  {algoMetrics.map((m, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className={`text-3xl font-extrabold ${m.color}`}>
+                        {m.prefix && <span>{m.prefix}</span>}
+                        {inView && (
+                          <CountUp end={m.value} duration={2} separator="," />
+                        )}
+                        {m.suffix && <span>{m.suffix}</span>}
+                      </div>
+                      <div className="text-sm text-green-700">{m.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -235,23 +257,28 @@ const DataCalculation: React.FC = () => {
                   Продвинутые возможности
                 </h4>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
-                    Гетерогенный автопарк (разные типы ТС)
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                    Динамические временные окна
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                    Мультиполигонные маршруты
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-pink-500 rounded-full mr-3"></div>
-                    Неограниченное количество заказов
-                  </li>
+                  {[
+                    'Гетерогенный автопарк (разные типы ТС)',
+                    'Динамические временные окна',
+                    'Мультиполигонные маршруты',
+                    'Неограниченное количество заказов',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mr-2" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
+                <div className="pt-2">
+                  <a
+                    href="https://github.com/nvidia/cuopt"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors"
+                  >
+                    Подробнее о cuOpt <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -277,7 +304,10 @@ const DataCalculation: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <motion.div variants={itemVariants} className="text-center">
                   <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <div className="text-4xl font-bold mb-2">24x</div>
+                    <div className="text-4xl font-bold mb-2">
+                      {inView && <CountUp end={24} duration={2} />}
+                      x
+                    </div>
                     <div className="text-purple-100 font-medium">быстрее конкурентов</div>
                     <div className="text-sm text-purple-200 mt-2">7.5 минут вместо 3 часов</div>
                   </div>
@@ -285,7 +315,9 @@ const DataCalculation: React.FC = () => {
                 
                 <motion.div variants={itemVariants} className="text-center">
                   <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <div className="text-4xl font-bold mb-2">50%</div>
+                    <div className="text-4xl font-bold mb-2">
+                      {inView && <CountUp end={50} duration={2} />}%
+                    </div>
                     <div className="text-purple-100 font-medium">экономия ресурсов</div>
                     <div className="text-sm text-purple-200 mt-2">16GB вместо 32GB RAM</div>
                   </div>
@@ -293,7 +325,9 @@ const DataCalculation: React.FC = () => {
                 
                 <motion.div variants={itemVariants} className="text-center">
                   <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                    <div className="text-4xl font-bold mb-2">99.75%</div>
+                    <div className="text-4xl font-bold mb-2">
+                      {inView && <CountUp end={99.75} decimals={2} duration={2} />}%
+                    </div>
                     <div className="text-purple-100 font-medium">оптимизация данных</div>
                     <div className="text-sm text-purple-200 mt-2">сжатие графа 400M→1M</div>
                   </div>
