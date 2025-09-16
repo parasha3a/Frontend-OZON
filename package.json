@@ -1,0 +1,64 @@
+{
+  "name": "ozon-vrp-frontend",
+  "version": "1.0.0",
+  "description": "OZON VRP Solution - React Frontend Presentation",
+  "main": "index.js",
+  "homepage": "https://parasha3a.github.io/Frontend-OZON",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite",
+    "test": "jest",
+    "deploy": "npm run build && gh-pages -d dist",
+    "predeploy": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "ozon",
+    "vrp",
+    "machine-learning",
+    "presentation"
+  ],
+  "author": "OZON VRP Team",
+  "license": "MIT",
+  "dependencies": {
+    "@react-three/drei": "^9.88.0",
+    "@react-three/fiber": "^8.15.0",
+    "framer-motion": "^10.16.0",
+    "gsap": "^3.13.0",
+    "lottie-react": "^2.4.0",
+    "lucide-react": "^0.290.0",
+    "react": "^18.2.0",
+    "react-countup": "^6.4.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.5.0",
+    "react-particles": "^2.12.0",
+    "react-router-dom": "^6.8.0",
+    "react-spring": "^9.7.0",
+    "styled-components": "^6.1.0",
+    "three": "^0.158.0",
+    "tsparticles": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.1.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
